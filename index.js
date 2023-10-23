@@ -26,4 +26,4 @@ app.delete("/deleteone",async(req,res)=>{
     res.status(200).send(result)
 })
 
-app.listen(5500)
+app.listen(5100)
