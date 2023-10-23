@@ -4,7 +4,7 @@ const app=express();
 
 app.use(express.json());
 
-app.get("/getdata",async(req,res)=>{
+app.get("/",async(req,res)=>{
     let data=await dbConnect();
     data=await data.find({}).toArray()
     res.send(data)
@@ -17,12 +17,12 @@ app.post("/insertone",async(req,res)=>{
 })
 app.patch("/updatestatus",async(req,res)=>{
     let coll=await dbConnect();
-    let result =await coll.updateOne({taskId:req.body.taskId},{$set:{taskStatus:req.body.taskStatus}})
+    let result =await coll.updateOne({"_id":req.body.taskId},{$set:{taskStatus:req.body.taskStatus}})
     res.status(200).send(result)
 })
 app.delete("/deleteone",async(req,res)=>{
     let coll=await dbConnect();
-    let result =await coll.deleteOne({taskId:req.body.taskId})
+    let result =await coll.deleteOne({"_id":req.body.taskId})
     res.status(200).send(result)
 })
 
